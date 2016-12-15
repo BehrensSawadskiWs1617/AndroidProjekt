@@ -112,7 +112,7 @@ public class DatenanzeigeActivity extends AppCompatActivity {
         Button btnAddFoto = (Button) findViewById(R.id.buttonAddFoto);
 
         if(photoavaiable) {
-            btnAddFoto.setText("Foto ansehen");
+            btnAddFoto.setText(R.string.button_ergebnis_bild_anzeigen);
         }
         btnAddFoto.setOnClickListener(new View.OnClickListener() {
             @Override
