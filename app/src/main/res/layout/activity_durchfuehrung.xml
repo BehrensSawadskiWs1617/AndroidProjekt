@@ -1,9 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="de.patrick_sawadski.reibungsversuch.MainActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_durchfuehrung"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_haftreibung_durchfuehrung"
     android:layout_width="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:gravity="top|center_horizontal"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -11,6 +38,9 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="de.patrick_sawadski.reibungsversuch.DurchfuehrungActivity"
     android:orientation="vertical">
+
+
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -36,57 +66,6 @@
             android:layout_width="150dp"
             tools:text="0 °" />
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true">
-
-            <TextView
-                android:text="Gx:"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textViewLabelX"
-                android:layout_weight="1"
-                android:textAllCaps="false" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textViewAccelX"
-                android:layout_weight="1"
-                tools:text="0,01" />
-
-            <TextView
-                android:text="Gy:"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textViewLabelY"
-                android:layout_weight="1" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textViewAccelY"
-                android:layout_weight="1"
-                tools:text="9,81" />
-
-            <TextView
-                android:text="Gz:"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textViewLabelZ"
-                android:layout_weight="1" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textViewAccelZ"
-                android:layout_weight="1"
-                tools:text="0,02" />
-        </LinearLayout>
     </RelativeLayout>
 
     <LinearLayout
@@ -142,3 +121,58 @@
         android:id="@+id/buttonHaftreibungStart" />
 
 </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:layout_above="@+id/textViewWinkel"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:text="Gx:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewLabelX"
+            android:layout_weight="1"
+            android:textAllCaps="false" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewAccelX"
+            android:layout_weight="1"
+            tools:text="0,01" />
+
+        <TextView
+            android:text="Gy:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewLabelY"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewAccelY"
+            android:layout_weight="1"
+            tools:text="9,81" />
+
+        <TextView
+            android:text="Gz:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewLabelZ"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewAccelZ"
+            android:layout_weight="1"
+            tools:text="0,02" />
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>
