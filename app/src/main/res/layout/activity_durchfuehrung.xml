@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_haftreibung_durchfuehrung"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="de.patrick_sawadski.reibungsversuch.DurchfuehrungActivity"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+        <ImageView
+            app:srcCompat="@drawable/drawable_winkel_ueber_oberflaeche"
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewWinkel"
+            android:textAlignment="textEnd"
+            android:layout_marginBottom="15dp"
+            android:layout_alignBottom="@+id/imageView"
+            android:textSize="36sp"
+            android:layout_alignParentStart="true"
+            android:layout_width="150dp"
+            tools:text="0 °" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true">
+
+            <TextView
+                android:text="Gx:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewLabelX"
+                android:layout_weight="1"
+                android:textAllCaps="false" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewAccelX"
+                android:layout_weight="1"
+                tools:text="0,01" />
+
+            <TextView
+                android:text="Gy:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewLabelY"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewAccelY"
+                android:layout_weight="1"
+                tools:text="9,81" />
+
+            <TextView
+                android:text="Gz:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewLabelZ"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewAccelZ"
+                android:layout_weight="1"
+                tools:text="0,02" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewX"
+            android:layout_weight="1"
+            tools:text="0,01" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewY"
+            android:layout_weight="1"
+            tools:text="0,01" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewZ"
+            android:layout_weight="1"
+            tools:text="0,01" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewSchwelle"
+            android:layout_weight="3"
+            tools:text="0,10" />
+
+        <SeekBar
+            android:layout_width="match_parent"
+            android:id="@+id/seekBarSchwelle"
+            android:layout_height="20dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <com.jjoe64.graphview.GraphView
+        android:layout_width="match_parent"
+        android:layout_height="100dip"
+        android:id="@+id/graphViewHaftreibung"/>
+
+    <Button
+        android:text="@string/button_durchfuehrung_start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonHaftreibungStart" />
+
+</LinearLayout>
