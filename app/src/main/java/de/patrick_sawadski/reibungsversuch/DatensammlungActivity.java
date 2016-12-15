@@ -96,7 +96,6 @@ public class DatensammlungActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     // TODO: Zweite Abfrage einfügen (Wirklich löschen?)
-                    // TODO: GIT vorführen
                     if(list.get(i).delete()){
                         Toast.makeText(getApplicationContext(), "Gelöscht:" + list.get(i).getName(), Toast.LENGTH_SHORT).show();
                         list.remove(i);
