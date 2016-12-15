@@ -93,9 +93,6 @@ public class DurchfuehrungActivity extends AppCompatActivity implements SensorEv
         tVx = (TextView) findViewById(R.id.textViewAccelX);
         tVy = (TextView) findViewById(R.id.textViewAccelY);
         tVz = (TextView) findViewById(R.id.textViewAccelZ);
-        tVxA = (TextView) findViewById(R.id.textViewX);
-        tVyA = (TextView) findViewById(R.id.textViewY);
-        tVzA = (TextView) findViewById(R.id.textViewZ);
         tVschwelle = (TextView) findViewById(R.id.textViewSchwelle);
         btnStart = (Button) findViewById(R.id.buttonHaftreibungStart);
         GraphView graph = (GraphView) findViewById(R.id.graphViewHaftreibung);
@@ -271,9 +268,6 @@ public class DurchfuehrungActivity extends AppCompatActivity implements SensorEv
                 break;
             case Sensor.TYPE_LINEAR_ACCELERATION:
                 linAccel = lowPassFilter(sensorEvent.values, linAccel);
-                tVxA.setText(String.format(Locale.GERMAN,"%.02f", linAccel[0])); // X
-                tVyA.setText(String.format(Locale.GERMAN,"%.02f", linAccel[1])); // Y
-                tVzA.setText(String.format(Locale.GERMAN,"%.02f", linAccel[2])); // Z
 
 
                 if(versuchGestartet){
@@ -283,8 +277,8 @@ public class DurchfuehrungActivity extends AppCompatActivity implements SensorEv
                     if((versuchsTyp == VERSUCHSTYP_HAFTREIBUNG) && abs(linAccel[1]) > fSchwellenwert) stoppeVersuch();
                 }
 
-                if(abs(linAccel[1]) > fSchwellenwert) tVyA.setBackgroundColor(GREEN);
-                else tVyA.setBackgroundColor(TRANSPARENT);
+                if(abs(linAccel[1]) > fSchwellenwert) tVwinkel.setBackgroundColor(GREEN);
+                else tVwinkel.setBackgroundColor(TRANSPARENT);
 
 
 

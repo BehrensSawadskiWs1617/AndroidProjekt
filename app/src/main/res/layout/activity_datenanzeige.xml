@@ -18,6 +18,12 @@
         tools:text="Beispieltext, ganz lang und viele Zeilen" />
 
     <Button
+        android:text="Foto hinzufügen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonAddFoto" />
+
+    <Button
         android:text="Messung speichern"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -1,6 +1,7 @@
 package de.patrick_sawadski.reibungsversuch;
 
 import android.content.Intent;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,8 +22,19 @@ import java.nio.channels.FileChannel;
 public class DatenanzeigeActivity extends AppCompatActivity {
 
     private static final String TAG = "Datenanzeige";
+    private static final int REQUEST_IMAGE_CAPTURE = 1;
+
     private File file = null;
     private Boolean datenCached;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +71,21 @@ public class DatenanzeigeActivity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+            // Button um Foto hinzuzufügen
+            Button btnAddFoto = (Button) findViewById(R.id.buttonAddFoto);
+            btnAddFoto.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent takePicIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    if(takePicIntent.resolveActivity(getPackageManager())!= null){
+                        startActivityForResult(takePicIntent, REQUEST_IMAGE_CAPTURE);
+                    }
+                }
+            });
+
+
+
 
             // Button zum Speichern anzeigen wenn Daten nicht im Speicher
             Button btnSpeichern = (Button) findViewById(R.id.buttonSpeichern);
