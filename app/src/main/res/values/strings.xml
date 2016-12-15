@@ -22,6 +22,8 @@
     <string name="button_durchfuehrung_running">Versuch läuft...</string>
 
 
+    <string name="button_ergebnis_speichern">Messung speichern</string>
+    <string name="button_ergebnis_gespeichert">Messung gespeichert</string>
     <string name="text_ergebnis_typ_haftreibung">Haftreibungskoeffizient</string>
     <string name="text_ergebnis_typ_gleitreibung">Gleitreibungskoeffizient</string>
     <string name="text_ergebnis_winkel">Winkel: </string>

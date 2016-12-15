@@ -3,6 +3,7 @@
     package="de.patrick_sawadski.reibungsversuch">
 
     <uses-feature android:name="android.hardware.camera2" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -40,6 +41,15 @@
             android:label="Datensammlung"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".DatenanzeigeActivity" />
+        <provider
+            android:authorities="de.patrick_sawadski.fileprovider"
+            android:name="android.support.v4.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"/>
+        </provider>
     </application>
 
 </manifest>
