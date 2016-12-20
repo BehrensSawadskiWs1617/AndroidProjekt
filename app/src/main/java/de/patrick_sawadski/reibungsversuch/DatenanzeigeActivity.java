@@ -60,7 +60,6 @@ public class DatenanzeigeActivity extends AppCompatActivity {
 
                 // TODO: Übergebene csv parsen und anzuzeigende Werte extrahieren
                 // TODO: Verlaufsgraphen anzeigen
-                // TODO: NIX TODO
 
                 ((TextView) findViewById(R.id.textViewTest)).setText(builder.toString());
                 reader.close();
