@@ -31,6 +31,8 @@ public class DatenanzeigeActivity extends AppCompatActivity {
 
     private File file = null;
     private Boolean datenCached;
+    private Boolean photoavaiable = false;
+    private String filebase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,10 +45,10 @@ public class DatenanzeigeActivity extends AppCompatActivity {
 
         if(fileuri != null){
 
-            // TODO: Wenn nicht gecached oder gespeichert, dann Dateipfad anzeigen
-
             try {
                 file = new File(fileuri);
+                filebase = file.getName().substring(0, file.getName().lastIndexOf("."));
+
                 FileReader reader = new FileReader(file);
 
                 StringBuilder builder = new StringBuilder();
@@ -66,42 +68,6 @@ public class DatenanzeigeActivity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-            // Button um Foto hinzuzufügen
-            Button btnAddFoto = (Button) findViewById(R.id.buttonAddFoto);
-            btnAddFoto.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    String filename = file.getName();
-                    String filebase = filename.substring(0, filename.lastIndexOf(".") - 1);
-                    File imageFile = null;
-                    try {
-                        imageFile = File.createTempFile(filebase, ".jpg", getApplicationContext().getFilesDir());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-                    Intent takePicIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    if(takePicIntent.resolveActivity(getPackageManager())!= null){
-                        if(imageFile != null) {
-
-                            Uri imageURI = FileProvider.getUriForFile(getApplicationContext(),
-                                    "de.patrick_sawadski.fileprovider",
-                                    imageFile);
-                            takePicIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageURI);
-
-                            List<ResolveInfo> resInfoList = getApplicationContext().getPackageManager().queryIntentActivities(takePicIntent, PackageManager.MATCH_DEFAULT_ONLY);
-                            for (ResolveInfo resolveInfo : resInfoList) {
-                                String packageName = resolveInfo.activityInfo.packageName;
-                                getApplicationContext().grantUriPermission(packageName, imageURI, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                            }
-
-                        }
-                        startActivityForResult(takePicIntent, REQUEST_IMAGE_CAPTURE);
-                    }
-                }
-            });
-
 
             // Button zum Speichern anzeigen wenn Daten nicht im Speicher
             final Button btnSpeichern = (Button) findViewById(R.id.buttonSpeichern);
@@ -126,12 +92,64 @@ public class DatenanzeigeActivity extends AppCompatActivity {
             } else {
                 btnSpeichern.setVisibility(View.INVISIBLE);
             }
-
-
         } else {
             Log.e(TAG, "Fileuri ist leer");
         }
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        File[] filesBuf = getFilesDir().listFiles();
+        for(File fileN : filesBuf){
+            if(fileN.getName().equals(filebase+".jpg")) {
+                photoavaiable = true;
+            }
+        }
+
+        Button btnAddFoto = (Button) findViewById(R.id.buttonAddFoto);
+
+        if(photoavaiable) {
+            btnAddFoto.setText(R.string.button_ergebnis_bild_anzeigen);
+        }
+        btnAddFoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent;
+                File imageFile = new File(getApplicationContext().getFilesDir(), filebase + ".jpg");
+                Uri imageURI = FileProvider.getUriForFile(getApplicationContext(), "de.patrick_sawadski.fileprovider", imageFile);
+
+                if (photoavaiable) {
+                    intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setDataAndType(imageURI, "image/*");
+                    List<ResolveInfo> resInfoList = getApplicationContext().getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+                    for (ResolveInfo resolveInfo : resInfoList) {
+                        String packageName = resolveInfo.activityInfo.packageName;
+                        getApplicationContext().grantUriPermission(packageName, imageURI, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    }
+                    startActivity(intent);
+                } else {
+                    intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    if (intent.resolveActivity(getPackageManager()) != null) {
+                        try {
+                            if (imageFile.createNewFile()) {
+                                intent.putExtra(MediaStore.EXTRA_OUTPUT, imageURI);
+                                List<ResolveInfo> resInfoList = getApplicationContext().getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+                                for (ResolveInfo resolveInfo : resInfoList) {
+                                    String packageName = resolveInfo.activityInfo.packageName;
+                                    getApplicationContext().grantUriPermission(packageName, imageURI, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                                }
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
+                    }
+                }
+            }
+        });
     }
 
     @Override
