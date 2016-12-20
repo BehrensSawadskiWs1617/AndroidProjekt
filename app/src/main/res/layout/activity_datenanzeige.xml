@@ -19,7 +19,7 @@
         tools:text="Beispieltext, ganz lang und viele Zeilen" />
 
     <Button
-        android:text="Foto hinzufügen"
+        android:text="@string/button_ergebnis_bild_hinzufuegen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/buttonAddFoto" />
