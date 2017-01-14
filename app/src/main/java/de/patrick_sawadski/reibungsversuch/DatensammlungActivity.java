@@ -45,7 +45,6 @@ public class DatensammlungActivity extends AppCompatActivity {
             }
         }
         CustomAdapter adapter = new CustomAdapter(files, this);
-        //ArrayAdapter<File> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, files);
         listview.setAdapter(adapter);
     }
 
@@ -83,7 +82,8 @@ public class DatensammlungActivity extends AppCompatActivity {
 
             TextView itemText = (TextView)view.findViewById(R.id.textViewListItemText);
             itemText.setText(list.get(i).getName());
-            view.findViewById(R.id.touchzoneViewData).setOnClickListener(new View.OnClickListener() {
+            View Touchzone = view.findViewById(R.id.touchzoneViewData);
+            Touchzone.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(getApplicationContext(), DatenanzeigeActivity.class);
@@ -92,6 +92,7 @@ public class DatensammlungActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
+
             ((Button)view.findViewById(R.id.buttonListItemDelete)).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

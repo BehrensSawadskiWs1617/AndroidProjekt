@@ -5,6 +5,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +15,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -22,6 +27,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.URI;
 import java.nio.channels.FileChannel;
+import java.util.Arrays;
 import java.util.List;
 
 public class DatenanzeigeActivity extends AppCompatActivity {
@@ -34,10 +40,43 @@ public class DatenanzeigeActivity extends AppCompatActivity {
     private Boolean photoavaiable = false;
     private String filebase;
 
+    //TODO: saved instance state beim drehen!!!
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_datenanzeige);
+
+        LineGraphSeries<DataPoint> mSeriesX, mSeriesY, mSeriesZ;
+        GraphView graph = (GraphView) findViewById(R.id.graphViewDatenanzeige);
+
+        mSeriesX = new LineGraphSeries<>();
+        mSeriesX.setTitle("Acc X");
+        mSeriesX.setColor(ContextCompat.getColor(this, R.color.colorAxisX));
+        mSeriesX.setThickness(2);
+        mSeriesY = new LineGraphSeries<>();
+        mSeriesY.setTitle("Acc Y");
+        mSeriesY.setColor(ContextCompat.getColor(this, R.color.colorAxisY));
+        mSeriesY.setThickness(2);
+        mSeriesZ = new LineGraphSeries<>();
+        mSeriesZ.setTitle("Acc Z");
+        mSeriesZ.setColor(ContextCompat.getColor(this, R.color.colorAxisZ));
+        mSeriesZ.setThickness(2);
+
+        graph.addSeries(mSeriesX);
+        graph.addSeries(mSeriesY);
+        graph.addSeries(mSeriesZ);
+        graph.getViewport().setScalable(true);
+        graph.getViewport().setXAxisBoundsManual(true);
+        graph.getViewport().setMinX(0);
+        graph.getViewport().setMaxX(1000);
+        graph.getViewport().setYAxisBoundsManual(true);
+        graph.getViewport().setMinY(-20);
+        graph.getViewport().setMaxY(20);
+
+        graph.getGridLabelRenderer().setHorizontalLabelsVisible(true);
+        graph.getGridLabelRenderer().setHighlightZeroLines(false);
+
 
         Intent intent = getIntent();
         datenCached = intent.getBooleanExtra("EXTRA_CACHED", false);
@@ -57,11 +96,40 @@ public class DatenanzeigeActivity extends AppCompatActivity {
                 while((ch = reader.read()) != -1){
                     builder.append((char)ch);
                 }
-
+                String text = "";
                 // TODO: Übergebene csv parsen und anzuzeigende Werte extrahieren
+                List<String> rows = Arrays.asList(builder.toString().split("\n\r"));
+                boolean rohdaten = false;
+                for(String string : rows){
+                    String[] part = string.split(";");
+                    if(!rohdaten){
+                        switch(part[0]) {
+                            case "Datum":
+                                text = part[1];
+                                break;
+                            case "Teilnehmer 1":
+                            case "Teilnehmer 2":
+                            case "Typ":
+                            case "Oberfläche 1":
+                            case "Oberfläche 2":
+                            case "Koeffizient":
+                                Log.d(TAG, "KOEFFIZIENT");
+                                break;
+                            case "Zeitstempel in ms":
+                                Log.d(TAG, "ZEITSTEMPEL");
+                                rohdaten = true;
+                                break;
+                        }
+                    } else {
+                        mSeriesX.appendData(new DataPoint(Integer.valueOf(part[0]), Float.valueOf(part[1])), true, 400);
+                        mSeriesY.appendData(new DataPoint(Integer.valueOf(part[0]), Float.valueOf(part[2])), true, 400);
+                        mSeriesZ.appendData(new DataPoint(Integer.valueOf(part[0]), Float.valueOf(part[3])), true, 400);
+                    }
+                }
+
                 // TODO: Verlaufsgraphen anzeigen
 
-                ((TextView) findViewById(R.id.textViewTest)).setText(builder.toString());
+                ((TextView) findViewById(R.id.textViewTest)).setText(text);
                 reader.close();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();

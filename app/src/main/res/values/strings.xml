@@ -30,5 +30,23 @@
     <string name="text_ergebnis_typ_gleitreibung">Gleitreibungskoeffizient</string>
     <string name="text_ergebnis_winkel">Winkel: </string>
     <string name="text_ergebnis_beschleunigung">Beschleunigung: </string>
+    <string name="actionbar_hilfe_icon">Hilfe</string>
+
+
+    <string name="dialog_help_main_title">Hilfe zur App</string>
+    <string name="dialog_help_main">
+        <b>Eine Messung aufnehmen:</b>\n
+        1. Versuchsbedingungen eingeben\n
+        2. Versuchstyp starten\n\n
+        <b>Alte Daten ansehen:</b>\n
+        Datensammlung
+    </string>
+    <string name="dialog_help_durchfuehrung_haft_title">Durchführung Haftreibung</string>
+    <string name="dialog_help_durchfuehrung_gleit_title">Durchführung Gleitreibung</string>
+    <string name="dialog_help_durchfuehrung_haft">Zur Ermittlung der Haftreibung, das Gerät mit dem Display
+    nach oben und der Geräteunterkante in Richtung der Rutschbewegung auf die Ebene legen. Die Ebene so lange
+    aufrichten, bis das Gerät zu rutschen beginnt. Dann die Ebene in dem Winkel lassen, bis das Gerät
+    unten angekommen ist.</string>
+    <string name="dialog_help_durchfuehrung_gleit">Zur Ermittlung der Gleitreibung...</string>
 
 </resources>
