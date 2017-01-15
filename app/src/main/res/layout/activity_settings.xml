@@ -254,38 +254,13 @@
                     android:id="@+id/textView8"
                     android:textStyle="normal|bold" />
 
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <EditText
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:inputType="textPersonName"
-                        android:ems="10"
-                        android:id="@+id/editTextKoordinaten"
-                        android:layout_weight="1"
-                        android:hint="Koordinaten"
-                        android:enabled="false"
-                        android:clickable="false"
-                        android:focusable="false" />
-
-                    <Button
-                        android:id="@+id/btnCoordinates"
-                        android:layout_height="wrap_content"
-                        android:layout_width="60dp"
-                        android:drawablePadding="-15sp"
-                        android:drawableTop="@android:drawable/ic_menu_mylocation" />
-                </LinearLayout>
-
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
                     android:ems="10"
-                    android:id="@+id/editTextOrtZusatz"
-                    android:hint="Zusatz (Z.b. Raum)" />
+                    android:id="@+id/editTextOrt"
+                    android:hint="z.B. HSH Raum 1968" />
 
             </LinearLayout>
         </LinearLayout>

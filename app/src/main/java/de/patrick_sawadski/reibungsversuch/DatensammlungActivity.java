@@ -2,6 +2,10 @@ package de.patrick_sawadski.reibungsversuch;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.net.Uri;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -86,10 +90,25 @@ public class DatensammlungActivity extends AppCompatActivity {
             Touchzone.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(getApplicationContext(), DatenanzeigeActivity.class);
-                    intent.putExtra("EXTRA_CACHED", false);
-                    intent.putExtra("EXTRA_FILEURI", list.get(i).toURI());
-                    startActivity(intent);
+                    Intent intent;
+                    String filename= list.get(i).toString();
+                    String extension = filename.substring(filename.lastIndexOf(".") + 1, filename.length());
+                    if(extension.equals("csv")) {
+                        intent = new Intent(getApplicationContext(), DatenanzeigeActivity.class);
+                        intent.putExtra("EXTRA_CACHED", false);
+                        intent.putExtra("EXTRA_FILEURI", list.get(i).toURI());
+                        startActivity(intent);
+                    } else if(extension.equals("jpg")){
+                        Uri imageURI = FileProvider.getUriForFile(getApplicationContext(), "de.patrick_sawadski.fileprovider", list.get(i));
+                        intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setDataAndType(imageURI, "image/*");
+                        List<ResolveInfo> resInfoList = getApplicationContext().getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+                        for (ResolveInfo resolveInfo : resInfoList) {
+                            String packageName = resolveInfo.activityInfo.packageName;
+                            getApplicationContext().grantUriPermission(packageName, imageURI, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                        }
+                        startActivity(intent);
+                    }
                 }
             });
 

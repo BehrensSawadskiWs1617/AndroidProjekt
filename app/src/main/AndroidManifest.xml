@@ -43,7 +43,10 @@
             android:label="Datensammlung"
             android:parentActivityName=".MainActivity" />
 
-        <activity android:name=".DatenanzeigeActivity" />
+        <activity
+            android:name=".DatenanzeigeActivity"
+            android:label="Ergebnis"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <provider
             android:authorities="de.patrick_sawadski.fileprovider"
             android:name="android.support.v4.content.FileProvider"

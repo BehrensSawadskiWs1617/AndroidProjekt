@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             tvTemperatur,
             tvLuftdruck,
             tvLuftfeuchte,
-            tvStandort;  // TODO: Ort fehlt!
+            tvOrt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tvTemperatur = ((TextView) findViewById(R.id.textViewTemp));
         tvLuftdruck = ((TextView) findViewById(R.id.textViewLuftdruck));
         tvLuftfeuchte = ((TextView) findViewById(R.id.textViewLuftfeuchte));
+        tvOrt = ((TextView) findViewById(R.id.textViewOrt));
 
 
     }
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             tvTemperatur.setText(String.format(Locale.GERMAN, "%.01f °C", prefs.getFloat("TEMPERATUR", NaN)));
             tvLuftdruck.setText(String.format(Locale.GERMAN, "%d hPa", prefs.getInt("LUFTDRUCK", 0)));
             tvLuftfeuchte.setText(String.format(Locale.GERMAN, "%.01f %% rel.", prefs.getFloat("LUFTFEUCHTE", NaN)));
+            tvOrt.setText(prefs.getString("ORT", ""));
         } catch (Exception e) {
             e.printStackTrace();
         }

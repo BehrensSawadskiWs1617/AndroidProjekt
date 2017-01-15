@@ -253,19 +253,28 @@ public class DurchfuehrungActivity extends AppCompatActivity implements SensorEv
                     "\"sep=;\"\n\r" +
                             "Reibungsversuch\n\r" +
                             "Datum;%s\n\r" +
-                            "Teilnehmer 1;%S\n\r" +
-                            "Teilnehmer 2;%S\n\r" +
+                            "Ort;%s\n\r" +
+                            "Temperatur;%.01f\n\r" +
+                            "Luftdruck;%d\n\r" +
+                            "Luftfeuchtigkeit;%.01f\n\r" +
+                            "Teilnehmer 1;%s\n\r" +
+                            "Teilnehmer 2;%s\n\r" +
                             "Typ;%s\n\r" +
                             "Oberfläche 1;%s\n\r" +
                             "Oberfläche 2;%s\n\r" +
                             "Koeffizient;%.02f\n\r",
-                    DateFormat.format("yyyy-MM-dd-kk-mm-ss", date).toString(),
-                    prefs.getString("TEILNEHMER1", ""),
-                    prefs.getString("TEILNEHMER2", ""),
-                    sVersuchsTyp,
-                    prefs.getString("OBERFLAECHE1", ""),
-                    prefs.getString("OBERFLAECHE2", ""),
-                    koeffizient
+
+                            DateFormat.format("yyyy-MM-dd-kk-mm-ss", date).toString(),
+                            prefs.getString("ORT", ""),
+                            prefs.getFloat("TEMPERATUR", 0.0f),
+                            prefs.getInt("LUFTDRUCK", 0),
+                            prefs.getFloat("LUFTFEUCHTE", 0.0f),
+                            prefs.getString("TEILNEHMER1", ""),
+                            prefs.getString("TEILNEHMER2", ""),
+                            sVersuchsTyp,
+                            prefs.getString("OBERFLAECHE1", ""),
+                            prefs.getString("OBERFLAECHE2", ""),
+                            koeffizient
                     )
             );
             writer.append("Zeitstempel in ms;Beschleunigung X;Beschleunigung Y;Beschleunigung Z\n\r");
@@ -278,19 +287,10 @@ public class DurchfuehrungActivity extends AppCompatActivity implements SensorEv
             e.printStackTrace();
         }
 
-            // TODO: restliche Versuchsbedingungen
-            // TODO: raw Datenarray anhängen (Beschleunigungen, Gravityvektor)
-
         Intent intent = new Intent(this, DatenanzeigeActivity.class);
         intent.putExtra("EXTRA_FILEURI", fileuri);
         intent.putExtra("EXTRA_CACHED", true);
 
-        // TODO: Restliche Extras entfernen, wenn der Parser geht... werden dann aus csv gelesen
-
-//        intent.putExtra("EXTRA_VERSUCHSTYP", versuchsTyp);
-//        intent.putExtra("EXTRA_KOEFFIZIENT", koeffizient);
-//        intent.putExtra("EXTRA_WINKEL", aktuellerWinkel);
-//        intent.putExtra("EXTRA_MAXBESCHLEUNIGUNG", beschleunigungMax);
         startActivity(intent);
 
 
@@ -339,6 +339,8 @@ public class DurchfuehrungActivity extends AppCompatActivity implements SensorEv
                 break;
             case Sensor.TYPE_LINEAR_ACCELERATION:
                 linAccel = lowPassFilter(sensorEvent.values, linAccel);
+
+                // TODO: Versuchsstopp etwas herauszögern, um mehr Daten im Graph zu sehen
 
                 if(versuchGestartet){
                     if(abs(linAccel[1]) > beschleunigungMax) beschleunigungMax = abs(linAccel[1]);
