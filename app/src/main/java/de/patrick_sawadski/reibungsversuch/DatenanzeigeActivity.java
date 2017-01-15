@@ -53,8 +53,8 @@ public class DatenanzeigeActivity extends AppCompatActivity {
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         if(actionBar != null){
             actionBar.setDisplayHomeAsUpEnabled(true);
-
         }
+        // TODO: Backbutton richtig implementieren, kann 2 Parents haben
 
         LineGraphSeries<DataPoint> mSeriesX, mSeriesY, mSeriesZ;
         GraphView graph = (GraphView) findViewById(R.id.graphViewDatenanzeige);
@@ -82,6 +82,9 @@ public class DatenanzeigeActivity extends AppCompatActivity {
         graph.getViewport().setYAxisBoundsManual(true);
         graph.getViewport().setMinY(-20);
         graph.getViewport().setMaxY(20);
+
+        // TODO: Graphenbeschriftung X Y Z
+        // TODO: Achsenbeschriftung verbessern
 
         graph.getGridLabelRenderer().setHorizontalLabelsVisible(true);
         graph.getGridLabelRenderer().setHighlightZeroLines(false);
@@ -148,6 +151,7 @@ public class DatenanzeigeActivity extends AppCompatActivity {
                             case "Koeffizient":
                                 ((TextView)findViewById(R.id.tvKoeffizient)).setText(value);
                                 break;
+                            // TODO: berechneter Winkel anzeigen
                             case "Zeitstempel in ms":
                                 Log.d(TAG, "ZEITSTEMPEL");
                                 rohdatenErreicht = true;

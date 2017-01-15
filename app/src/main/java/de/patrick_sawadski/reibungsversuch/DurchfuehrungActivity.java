@@ -248,6 +248,7 @@ public class DurchfuehrungActivity extends AppCompatActivity implements SensorEv
             file = File.createTempFile(FILENAME, ".csv", getApplicationContext().getCacheDir());
             fileuri = file.toURI();
             FileWriter writer = new FileWriter(file);
+            // TODO: Winkel und Beschleunigung fehlt!!!
             writer.write(
                     String.format(Locale.ENGLISH,
                     "\"sep=;\"\n\r" +
@@ -341,7 +342,7 @@ public class DurchfuehrungActivity extends AppCompatActivity implements SensorEv
                 linAccel = lowPassFilter(sensorEvent.values, linAccel);
 
                 // TODO: Versuchsstopp etwas herauszögern, um mehr Daten im Graph zu sehen
-
+                // TODO: Beschleunigungsmessung, Maximumerkennung optimieren
                 if(versuchGestartet){
                     if(abs(linAccel[1]) > beschleunigungMax) beschleunigungMax = abs(linAccel[1]);
                     if(abs(linAccel[1]) > fSchwellenwert) maxErreicht = true;
