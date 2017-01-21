@@ -8,10 +8,13 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.ShareActionProvider;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.ActionProvider;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -84,9 +87,6 @@ public class DatenanzeigeActivity extends AppCompatActivity {
         graph.getViewport().setMinY(-20);
         graph.getViewport().setMaxY(20);
 
-        // TODO: Graphenbeschriftung X Y Z
-        // TODO: Achsenbeschriftung verbessern
-
         graph.getGridLabelRenderer().setHorizontalLabelsVisible(true);
         graph.getGridLabelRenderer().setHighlightZeroLines(false);
 
@@ -110,7 +110,7 @@ public class DatenanzeigeActivity extends AppCompatActivity {
                     builder.append((char)ch);
                 }
 
-                List<String> rows = Arrays.asList(builder.toString().split("\n\r"));
+                List<String> rows = Arrays.asList(builder.toString().split("\n"));
                 boolean rohdatenErreicht = false;
                 for(String string : rows){
                     String[] part = string.split(";");
@@ -122,10 +122,10 @@ public class DatenanzeigeActivity extends AppCompatActivity {
                             case "Typ":
                                 ((TextView)findViewById(R.id.tvVersuchstyp)).setText(value);
                                 break;
-                            case "Oberfläche 1":
+                            case "Oberflaeche 1":
                                 ((TextView)findViewById(R.id.tvOberflaeche1)).setText(value);
                                 break;
-                            case "Oberfläche 2":
+                            case "Oberflaeche 2":
                                 ((TextView)findViewById(R.id.tvOberflaeche2)).setText(value);
                                 break;
                             case "Datum":
@@ -231,17 +231,32 @@ public class DatenanzeigeActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_datenanzeige, menu);
+        MenuItem share = menu.findItem(R.id.action_teilen);
         if(datenCached) {
             menu.findItem(R.id.action_speichern).setVisible(true);
-            menu.findItem(R.id.action_teilen).setVisible(false);
             menu.findItem(R.id.action_foto_hinzufuegen).setVisible(false);
+            share.setVisible(false);
         } else {
             menu.findItem(R.id.action_speichern).setVisible(false);
-            menu.findItem(R.id.action_teilen).setVisible(true);
             menu.findItem(R.id.action_foto_hinzufuegen).setVisible(true);
+            share.setVisible(true);
+
+            Uri fileURI = FileProvider.getUriForFile(getApplicationContext(), "de.patrick_sawadski.fileprovider", file);
+            Intent shareIntent = new Intent(Intent.ACTION_SEND)
+                    .setType("text/plain")
+                    .putExtra(Intent.EXTRA_STREAM, fileURI);
+            List<ResolveInfo> resInfoList = getApplicationContext().getPackageManager().queryIntentActivities(shareIntent, PackageManager.MATCH_DEFAULT_ONLY);
+            for (ResolveInfo resolveInfo : resInfoList) {
+                String packageName = resolveInfo.activityInfo.packageName;
+                getApplicationContext().grantUriPermission(packageName, fileURI, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            }
+            ShareActionProvider mShareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(share);
+            mShareActionProvider.setShareIntent(shareIntent);
         }
         return true;
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -292,11 +307,6 @@ public class DatenanzeigeActivity extends AppCompatActivity {
             }
             return true;
         }
-        if(id == R.id.action_teilen){
-            // TODO: Teilen funktion
-            return true;
-        }
-
         return super.onOptionsItemSelected(item);
     }
 

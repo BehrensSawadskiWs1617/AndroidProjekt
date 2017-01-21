@@ -10,8 +10,8 @@
         android:icon="@android:drawable/ic_menu_save"
         android:id="@+id/action_speichern"
         app:showAsAction="always" />
-    <item android:title="Senden"
-        android:icon="?android:attr/actionModeShareDrawable"
+    <item android:title="Share"
         android:id="@+id/action_teilen"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom"
+        app:actionProviderClass="android.support.v7.widget.ShareActionProvider"/>
 </menu>

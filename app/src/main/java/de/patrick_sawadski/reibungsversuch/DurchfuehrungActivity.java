@@ -94,7 +94,7 @@ public class DurchfuehrungActivity extends AppCompatActivity implements SensorEv
         }
 
         String toCSVrow(long startzeit){
-            return String.format(Locale.ENGLISH, "%d; %s; %s; %s\n\r", time-startzeit, acceleration[0], acceleration[1], acceleration[2]);
+            return String.format(Locale.ENGLISH, "%d; %s; %s; %s\n", time-startzeit, acceleration[0], acceleration[1], acceleration[2]);
         }
     }
 
@@ -332,21 +332,21 @@ public class DurchfuehrungActivity extends AppCompatActivity implements SensorEv
             fileuri = file.toURI();
             FileWriter writer = new FileWriter(file);
             writer.write(
-                    String.format(Locale.ENGLISH,
-                    "\"sep=;\"\n\r" +
-                            "Reibungsversuch\n\r" +
-                            "Datum;%s\n\r" +
-                            "Ort;%s\n\r" +
-                            "Temperatur;%.01f\n\r" +
-                            "Luftdruck;%d\n\r" +
-                            "Luftfeuchtigkeit;%.01f\n\r" +
-                            "Teilnehmer 1;%s\n\r" +
-                            "Teilnehmer 2;%s\n\r" +
-                            "Typ;%s\n\r" +
-                            "Oberfläche 1;%s\n\r" +
-                            "Oberfläche 2;%s\n\r" +
-                            "Koeffizient;%.02f\n\r" +
-                            "Winkel;%.02f\n\r",
+                    String.format(Locale.GERMAN,
+                    "\"sep=;\"\n" +
+                            "Reibungsversuch\n" +
+                            "Datum;%s\n" +
+                            "Ort;%s\n" +
+                            "Temperatur;%.01f\n" +
+                            "Luftdruck;%d\n" +
+                            "Luftfeuchtigkeit;%.01f\n" +
+                            "Teilnehmer 1;%s\n" +
+                            "Teilnehmer 2;%s\n" +
+                            "Typ;%s\n" +
+                            "Oberflaeche 1;%s\n" +
+                            "Oberflaeche 2;%s\n" +
+                            "Koeffizient;%.02f\n" +
+                            "Winkel;%.02f\n",
 
                             DateFormat.format("yyyy-MM-dd-kk-mm-ss", date).toString(),
                             prefs.getString("ORT", ""),
@@ -363,13 +363,13 @@ public class DurchfuehrungActivity extends AppCompatActivity implements SensorEv
                     )
             );
             if(versuchsTyp == VERSUCHSTYP_GLEITREIBUNG){
-                writer.append(String.format(Locale.ENGLISH, "Beschleunigung;%.02f\n\r", maxBeschleunigung));
+                writer.append(String.format(Locale.GERMAN, "Beschleunigung;%.02f\n", maxBeschleunigung));
                 if(externeMess){
-                    writer.append(String.format(Locale.ENGLISH, "Vergleich Beschleunigung;%.02f\n\r" +
-                            "Vergleich Koeffizient;%.02f\n\r", extBeschl, extKoeff));
+                    writer.append(String.format(Locale.GERMAN, "Vergleich Beschleunigung;%.02f\n" +
+                            "Vergleich Koeffizient;%.02f\n", extBeschl, extKoeff));
                 }
             }
-            writer.append("Zeitstempel in ms;Beschleunigung X;Beschleunigung Y;Beschleunigung Z\n\r");
+            writer.append("Zeitstempel in ms;Beschleunigung X;Beschleunigung Y;Beschleunigung Z\n");
             Log.d(TAG, "Schreibe " + werteListe.size() + " Werte");
             while(werteListe.size() > 0) {
                 writer.append(((Messwert)werteListe.poll()).toCSVrow(referenzzeit));

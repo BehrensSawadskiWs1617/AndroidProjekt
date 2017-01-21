@@ -1,6 +1,8 @@
 package de.patrick_sawadski.reibungsversuch;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -45,7 +47,11 @@ public class DatensammlungActivity extends AppCompatActivity {
         files = new ArrayList<>();
         for(File inFile : filesBuf){
             if(!inFile.isDirectory()){
-                files.add(inFile);
+                String filename= inFile.toString();
+                String extension = filename.substring(filename.lastIndexOf(".") + 1, filename.length());
+                if(extension.equals("csv") || extension.equals("jpg")){
+                    files.add(inFile);
+                }
             }
         }
         CustomAdapter adapter = new CustomAdapter(files, this);
@@ -115,12 +121,21 @@ public class DatensammlungActivity extends AppCompatActivity {
             ((Button)view.findViewById(R.id.buttonListItemDelete)).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    // TODO: Zweite Abfrage einfügen (Wirklich löschen?)
-                    if(list.get(i).delete()){
-                        Toast.makeText(getApplicationContext(), "Gelöscht:" + list.get(i).getName(), Toast.LENGTH_SHORT).show();
-                        list.remove(i);
-                        notifyDataSetChanged();
-                    }
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setTitle("Wirklich löschen?")
+                            .setPositiveButton("Ja", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int n) {
+                                    if(list.get(i).delete()){
+                                        Toast.makeText(context, "Gelöscht: " + list.get(i).getName(), Toast.LENGTH_SHORT).show();
+                                        list.remove(i);
+                                        notifyDataSetChanged();
+                                    }
+                                }
+                            })
+                            .setNeutralButton("Nein", null);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
                 }
             });
             return view;

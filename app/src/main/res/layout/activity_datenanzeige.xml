@@ -287,6 +287,50 @@
                 android:id="@+id/graphViewDatenanzeige"
                 android:layout_height="260dip" />
 
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@color/colorAxisX"/>
+
+                <TextView
+                    android:text="Accel X"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView39"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal" />
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@color/colorAxisY"/>
+
+                <TextView
+                    android:text="Accel Y"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView38"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal" />
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@color/colorAxisZ"/>
+
+                <TextView
+                    android:text="Accel Z"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView37"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal" />
+            </LinearLayout>
+
             <Button
                 android:text="@string/button_ergebnis_bild_anzeigen"
                 android:layout_width="match_parent"

@@ -70,7 +70,6 @@ public class SettingsActivity extends AppCompatActivity{
         editor.putString("OBERFLAECHE2", etOberflaeche2.getText().toString());
         editor.putString("ORT", etOrt.getText().toString());
 
-        // TODO: Benutzer auf falsche Eingaben hinweisen! Z.B. durch Einfärben vom Textfeld während der Eingabe
         try {
             editor.putFloat("TEMPERATUR", nf.parse(etTemperatur.getText().toString()).floatValue());
             editor.putInt("LUFTDRUCK", nf.parse(etLuftdruck.getText().toString()).intValue());
