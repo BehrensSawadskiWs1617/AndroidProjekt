@@ -23,6 +23,8 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
+import org.w3c.dom.Text;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -54,7 +56,6 @@ public class DatenanzeigeActivity extends AppCompatActivity {
         if(actionBar != null){
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-        // TODO: Backbutton richtig implementieren, kann 2 Parents haben
 
         LineGraphSeries<DataPoint> mSeriesX, mSeriesY, mSeriesZ;
         GraphView graph = (GraphView) findViewById(R.id.graphViewDatenanzeige);
@@ -151,7 +152,21 @@ public class DatenanzeigeActivity extends AppCompatActivity {
                             case "Koeffizient":
                                 ((TextView)findViewById(R.id.tvKoeffizient)).setText(value);
                                 break;
-                            // TODO: berechneter Winkel anzeigen
+                            case "Winkel":
+                                ((TextView)findViewById(R.id.tvWinkel)).setText(value+"°");
+                                break;
+                            case "Beschleunigung":
+                                findViewById(R.id.tableRowBeschleunigung).setVisibility(View.VISIBLE);
+                                ((TextView)findViewById(R.id.tvBeschleunigung)).setText(value);
+                                break;
+                            case "Vergleich Beschleunigung":
+                                findViewById(R.id.tableRowExtBeschl).setVisibility(View.VISIBLE);
+                                ((TextView)findViewById(R.id.tvExtBeschleunigung)).setText(value);
+                                break;
+                            case "Vergleich Koeffizient":
+                                findViewById(R.id.tableRowExtKoeff).setVisibility(View.VISIBLE);
+                                ((TextView)findViewById(R.id.tvExtKoeff)).setText(value);
+                                break;
                             case "Zeitstempel in ms":
                                 Log.d(TAG, "ZEITSTEMPEL");
                                 rohdatenErreicht = true;
@@ -232,6 +247,10 @@ public class DatenanzeigeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         Log.d(TAG, "onOptionsItemSelected():" + item);
+        if(id == android.R.id.home){
+            finish();
+            return true;
+        }
         if(id == R.id.action_foto_hinzufuegen) {
             Intent intent;
             File imageFile = new File(getApplicationContext().getFilesDir(), filebase + ".jpg");
@@ -251,9 +270,8 @@ public class DatenanzeigeActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
-                findViewById(R.id.buttonZeigeBild).setVisibility(View.VISIBLE); // TODO: Button erst zeigen, wenn wirklich Bild vorhanden
-                return true;
             }
+            return true;
         }
         if(id == R.id.action_speichern){
             if(datenCached) {
@@ -280,6 +298,14 @@ public class DatenanzeigeActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            findViewById(R.id.buttonZeigeBild).setVisibility(View.VISIBLE);
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override

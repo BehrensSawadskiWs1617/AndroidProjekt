@@ -49,9 +49,9 @@ public class SettingsActivity extends AppCompatActivity{
             etTeilnehmer2.setText(prefs.getString("TEILNEHMER2", ""));
             etOberflaeche1.setText(prefs.getString("OBERFLAECHE1", ""));
             etOberflaeche2.setText(prefs.getString("OBERFLAECHE2", ""));
-            etTemperatur.setText(String.format(Locale.GERMAN, "%.01f", prefs.getFloat("TEMPERATUR", 25.0f)));
-            etLuftdruck.setText(String.format(Locale.GERMAN, "%d", prefs.getInt("LUFTDRUCK", 1080)));
-            etLuftfeuchte.setText(String.format(Locale.GERMAN, "%.01f", prefs.getFloat("LUFTFEUCHTE", 35.0f)));
+            etTemperatur.setText(String.format(Locale.ENGLISH, "%.01f", prefs.getFloat("TEMPERATUR", 25.0f)));
+            etLuftdruck.setText(String.format(Locale.ENGLISH, "%d", prefs.getInt("LUFTDRUCK", 1080)));
+            etLuftfeuchte.setText(String.format(Locale.ENGLISH, "%.01f", prefs.getFloat("LUFTFEUCHTE", 35.0f)));
             etOrt.setText(prefs.getString("ORT", ""));
         } catch (Exception e) {
             e.printStackTrace();
@@ -61,7 +61,7 @@ public class SettingsActivity extends AppCompatActivity{
     @Override
     protected void onPause() {
         super.onPause();
-        NumberFormat nf = NumberFormat.getInstance(Locale.GERMAN);
+        NumberFormat nf = NumberFormat.getInstance(Locale.ENGLISH);
         SharedPreferences.Editor editor = prefs.edit();
 
         editor.putString("TEILNEHMER1", etTeilnehmer1.getText().toString());
