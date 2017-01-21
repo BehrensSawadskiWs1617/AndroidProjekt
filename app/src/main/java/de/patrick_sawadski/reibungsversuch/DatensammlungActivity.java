@@ -13,11 +13,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -30,7 +26,6 @@ import java.util.List;
 public class DatensammlungActivity extends AppCompatActivity {
 
     private ListView listview;
-    private ArrayList<File> files;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +39,7 @@ public class DatensammlungActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         File[] filesBuf = getFilesDir().listFiles();
-        files = new ArrayList<>();
+        ArrayList<File> files = new ArrayList<>();
         for(File inFile : filesBuf){
             if(!inFile.isDirectory()){
                 String filename= inFile.toString();
@@ -118,7 +113,7 @@ public class DatensammlungActivity extends AppCompatActivity {
                 }
             });
 
-            ((Button)view.findViewById(R.id.buttonListItemDelete)).setOnClickListener(new View.OnClickListener() {
+            view.findViewById(R.id.buttonListItemDelete).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(context);

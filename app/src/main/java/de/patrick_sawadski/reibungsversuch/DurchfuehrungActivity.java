@@ -1,22 +1,18 @@
 package de.patrick_sawadski.reibungsversuch;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.net.Uri;
 import android.os.SystemClock;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.format.DateFormat;
 import android.util.Log;
@@ -26,24 +22,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Locale;
 import java.util.Queue;
 
@@ -55,10 +44,8 @@ import static java.lang.Math.cos;
 
 public class DurchfuehrungActivity extends AppCompatActivity implements SensorEventListener {
 
-    public static final String TAG = "Durchfuehrung";
-
+    private static final String TAG = "Durchfuehrung";
     private static final int SENSOR_DELAY_US = 20000;
-
     private static final int REQUEST_WEG_ZEIT = 1;          // Intent Request Codes
 
     public static final int VERSUCHSTYP_HAFTREIBUNG = 1;
@@ -391,8 +378,8 @@ public class DurchfuehrungActivity extends AppCompatActivity implements SensorEv
     }
 
 
-    static final float ALPHA = 0.20f; // filter constant
-    protected float[] lowPassFilter( float[] inputs, float[] outputs) {
+    private static final float ALPHA = 0.20f; // filter constant
+    private float[] lowPassFilter(float[] inputs, float[] outputs) {
         if(outputs == null) return inputs;
         for(int i = 0; i<inputs.length; i++){
             outputs[i] = outputs[i] + ALPHA * (inputs[i] - outputs[i]);

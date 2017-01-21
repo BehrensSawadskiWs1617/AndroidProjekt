@@ -32,20 +32,48 @@
     <string name="actionbar_hilfe_icon">Hilfe</string>
 
 
+    <!-- Hilfetexte -->
     <string name="dialog_help_main_title">Hilfe zur App</string>
     <string name="dialog_help_main">
-        <b>Eine Messung aufnehmen:</b>\n
-        1. Versuchsbedingungen eingeben\n
-        2. Versuchstyp starten\n\n
-        <b>Alte Daten ansehen:</b>\n
-        Datensammlung
+        Diese App ermöglicht es, den Haft- und Gleitreibungskoeffizienten zwischen dem Smartphone und einer anderen Oberfläche experimentell zu bestimmen.\n\n
+        <b>Versuchsbedingungen:</b>\n
+        In diesem Abschnitt werden die Rahmenbedingungen für den Versuch erfasst. Zum Ändern auf den Text tippen.\n\n
+        <b>Versuch starten:</b>\n
+        Je nach zu bestimmendem Koeffizient den Versuch durch Tippen auf \"Haftreibung\" oder \"Gleitreibung\" starten.
+        Weitere Hilfe bietet der Infobutton im jeweiligen Versuchsbildschirm.\n\n
+        <b>Daten ansehen:</b>\n
+        Die Datensammlung zeigt eine Liste der gespeicherten Versuchsdaten. Diese können bei Bedarf über verschiedene Wege versendet
+        (Bluetooth, E-Mail, etc.) oder gelöscht werden.
     </string>
+
     <string name="dialog_help_durchfuehrung_haft_title">Durchführung Haftreibung</string>
+    <string name="dialog_help_durchfuehrung_haft">
+        <b>Vorbereitung:</b>\n
+        Das Gerät mit dem Display nach oben und der Geräteunterkante in Richtung der gewünschten Rutschbewegung auf die Ebene legen.\n
+        Mit dem Schieberegler den Schwellenwert zur Rutscherkennung so einstellen, dass ein Rutschen problemlos erkannt wird,
+        es aber vorher zu keiner Fehlerkennung kommt.
+        Ein grün hinterlegter Winkeltext zeigt eine erkannte Rutschbewegung an.\n\n
+        <b>Durchführung:</b>\n
+        \"Versuch starten\" betätigen.
+        Die Ebene langsam und ohne ruckartige Bewegungen aufrichten, bis das Gerät zu rutschen beginnt.
+        Ab diesem Zeitpunkt den Winkel der Ebene beibehalten, bis das Gerät seinen Rutschvorgang beendet hat.\n
+        Das Gerät zeigt den Ergebnisbildschirm mit allen Versuchsparametern und dem Ergebnis an. Die Ergebnisse können in der Datensammlung gespeichert
+        werden und anschließend bei Bedarf mit einem Foto des Versuches ergänzt werden.
+    </string>
+
     <string name="dialog_help_durchfuehrung_gleit_title">Durchführung Gleitreibung</string>
-    <string name="dialog_help_durchfuehrung_haft">Zur Ermittlung der Haftreibung, das Gerät mit dem Display
-    nach oben und der Geräteunterkante in Richtung der Rutschbewegung auf die Ebene legen. Die Ebene so lange
-    aufrichten, bis das Gerät zu rutschen beginnt. Dann die Ebene in dem Winkel lassen, bis das Gerät
-    unten angekommen ist.</string>
-    <string name="dialog_help_durchfuehrung_gleit">Zur Ermittlung der Gleitreibung...</string>
+    <string name="dialog_help_durchfuehrung_gleit">
+        <b>Vorbereitung:</b>\n
+        Die Ebene wird in einem so großen Winkel aufgerichtet, sodass das Gerät von alleine runterrutscht, sobald es losgelassen wird.
+        Dieses dann mit dem Display nach oben und der Geräteunterkante in Rutschrichtung darauf platzieren und festhalten.
+        Mit dem Schieberegler den Schwellenwert zur Rutscherkennung so einstellen, dass ein Rutschen problemlos erkannt wird, es aber vorher
+        zu keiner Fehlauslösung kommt. Ein grün hinterlegter Winkeltext zeigt eine erkannte Rutschbewegung an.\n\n
+        <b>Durchführung:</b>\n
+        \"Versuch starten\" betätigen.
+        Das Gerät loslassen, sodass es durch sein Eigengewicht die schiefe Ebene herunterrutscht. Die Anwendung misst eigenständig die auftretende
+        Beschleunigung und den Winkel. Zusätzlich ist nach der Messwertaufnahme die Eingabe von Strecke und Zeit zur alternativen Beschleunigungsberechnung
+        möglich (optional). Danach zeigt das Gerät den Ergebnisbildschirm mit allen Versuchsparametern und dem Ergebnis an. Die Ergebnisse können in der Datensammlung gespeichert
+        werden und anschließend bei Bedarf mit einem Foto des Versuches ergänzt werden.
+    </string>
 
 </resources>
