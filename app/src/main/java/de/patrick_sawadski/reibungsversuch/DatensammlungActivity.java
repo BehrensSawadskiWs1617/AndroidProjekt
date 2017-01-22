@@ -55,7 +55,7 @@ public class DatensammlungActivity extends AppCompatActivity {
 
     public class CustomAdapter extends BaseAdapter implements ListAdapter {
 
-        private ArrayList<File> list = new ArrayList<File>();
+        private ArrayList<File> list = new ArrayList<>();
         private Context context;
 
         public CustomAdapter(ArrayList<File> list, Context context){

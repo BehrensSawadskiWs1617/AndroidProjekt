@@ -55,7 +55,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
-        NumberFormat nf = NumberFormat.getInstance(Locale.GERMAN);
         try {
             tvTeilnehmer.setText(prefs.getString("TEILNEHMER1", "") + ", " + prefs.getString("TEILNEHMER2", ""));
             tvOberflaechen.setText(prefs.getString("OBERFLAECHE1", "") + ", " + prefs.getString("OBERFLAECHE2", ""));

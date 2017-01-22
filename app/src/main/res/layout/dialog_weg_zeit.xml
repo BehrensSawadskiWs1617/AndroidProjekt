@@ -20,7 +20,7 @@
             android:layout_height="match_parent" >
 
             <TextView
-                android:text="Weg"
+                android:text="@string/dialog_wegzeit_weg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView33" />
@@ -33,7 +33,7 @@
                 android:inputType="numberDecimal" />
 
             <TextView
-                android:text="Meter"
+                android:text="@string/dialog_wegzeit_meter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView26" />
@@ -44,7 +44,7 @@
             android:layout_height="match_parent" >
 
             <TextView
-                android:text="Zeit"
+                android:text="@string/dialog_wegzeit_zeit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView34" />
@@ -57,7 +57,7 @@
                 android:id="@+id/etZeit" />
 
             <TextView
-                android:text="Sekunden"
+                android:text="@string/dialog_wegzeit_sekunden"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView30" />
@@ -71,14 +71,14 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:text="Überspringen"
+            android:text="@string/dialog_wegzeit_button_ueberspringen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/btnUeberspringen"
             android:layout_weight="1" />
 
         <Button
-            android:text="Hinzufügen"
+            android:text="@string/dialog_wegzeit_button_hinzufuegen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/btnHinzufuegen"

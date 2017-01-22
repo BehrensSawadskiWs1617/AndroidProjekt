@@ -175,8 +175,6 @@ public class DatenanzeigeActivity extends AppCompatActivity {
                     }
                 }
                 reader.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }

@@ -238,6 +238,7 @@ public class DurchfuehrungActivity extends AppCompatActivity implements SensorEv
         mSeriesZ.appendData(new DataPoint(graphLastT, linAccel[2]), true, 400);
 
         if(gravity != null && linAccel != null && (versuchsStatus == VERSUCHSSTATUS_GESTARTET || versuchsStatus == VERSUCHSSTATUS_RUTSCHEND)) {
+            //noinspection unchecked,unchecked
             werteListe.offer(new Messwert(SystemClock.elapsedRealtime(), gravity, linAccel));
             if(werteListe.size() > 2000){   // Größe begrenzen, nur letzte 2000 Messwerte ( bei 20 ms Messwertabstand = 40 Sekunden )
                 werteListe.remove();

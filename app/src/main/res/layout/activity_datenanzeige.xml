@@ -44,8 +44,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tvVersuchstyp"
                 android:textSize="14sp"
-                tools:text="Haftreibungskoeffizient zwischen"
-                android:text="Koeff" />
+                tools:text="Haftreibungskoeffizient zwischen"/>
 
             <LinearLayout
                 android:orientation="horizontal"
