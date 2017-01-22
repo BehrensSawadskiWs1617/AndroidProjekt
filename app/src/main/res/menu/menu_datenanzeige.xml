@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:title="@string/appbar_item_photo"
+        android:icon="@android:drawable/ic_menu_camera"
+        android:id="@+id/action_foto_hinzufuegen"
+        app:showAsAction="always" />
+    <item android:title="@string/appbar_item_save"
+        android:icon="@android:drawable/ic_menu_save"
+        android:id="@+id/action_speichern"
+        app:showAsAction="always" />
+    <item android:title="@string/appbar_item_share"
+        android:id="@+id/action_teilen"
+        app:showAsAction="ifRoom"
+        app:actionProviderClass="android.support.v7.widget.ShareActionProvider"/>
+</menu>

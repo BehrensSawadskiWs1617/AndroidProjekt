@@ -1,5 +1,6 @@
 package de.patrick_sawadski.reibungsversuch;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,8 +10,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
@@ -27,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             tvTemperatur,
             tvLuftdruck,
             tvLuftfeuchte,
-            tvStandort;  // TODO: Ort fehlt!
+            tvOrt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tvTemperatur = ((TextView) findViewById(R.id.textViewTemp));
         tvLuftdruck = ((TextView) findViewById(R.id.textViewLuftdruck));
         tvLuftfeuchte = ((TextView) findViewById(R.id.textViewLuftfeuchte));
+        tvOrt = ((TextView) findViewById(R.id.textViewOrt));
 
 
     }
@@ -55,13 +55,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
-        NumberFormat nf = NumberFormat.getInstance(Locale.GERMAN);
         try {
             tvTeilnehmer.setText(prefs.getString("TEILNEHMER1", "") + ", " + prefs.getString("TEILNEHMER2", ""));
             tvOberflaechen.setText(prefs.getString("OBERFLAECHE1", "") + ", " + prefs.getString("OBERFLAECHE2", ""));
             tvTemperatur.setText(String.format(Locale.GERMAN, "%.01f °C", prefs.getFloat("TEMPERATUR", NaN)));
             tvLuftdruck.setText(String.format(Locale.GERMAN, "%d hPa", prefs.getInt("LUFTDRUCK", 0)));
             tvLuftfeuchte.setText(String.format(Locale.GERMAN, "%.01f %% rel.", prefs.getFloat("LUFTFEUCHTE", NaN)));
+            tvOrt.setText(prefs.getString("ORT", ""));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -102,13 +102,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_help) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle(R.string.dialog_help_main_title)
+                    .setMessage(R.string.dialog_help_main)
+                    .setPositiveButton("OK", null);
+            AlertDialog dialog = builder.create();
+            dialog.show();
             return true;
         }
 

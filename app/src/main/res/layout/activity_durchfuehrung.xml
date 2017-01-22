@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -73,13 +72,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -90,14 +82,12 @@
                 android:text="Schwelle:"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView18"
-                android:layout_weight="3" />
+                android:id="@+id/textView18"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/textViewSchwelle"
-                android:layout_weight="3"
                 tools:text="0,10" />
         </LinearLayout>
 
@@ -120,16 +110,11 @@
         android:layout_height="wrap_content"
         android:id="@+id/buttonHaftreibungStart" />
 
-</LinearLayout>
-
-
     <LinearLayout
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="right"
-        android:layout_above="@+id/textViewWinkel"
-        android:layout_alignParentStart="true">
+        android:gravity="end">
 
         <TextView
             android:text="Gx:"
@@ -174,5 +159,8 @@
             android:layout_weight="1"
             tools:text="0,02" />
     </LinearLayout>
+
+</LinearLayout>
+
 
 </android.support.design.widget.CoordinatorLayout>

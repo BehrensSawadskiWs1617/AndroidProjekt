@@ -26,7 +26,7 @@
         android:layout_marginBottom="10dp">
 
         <TextView
-            android:text="Versuchsbedingungen"
+            android:text="@string/menu_section_versuchsbedingungen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView17"
@@ -49,7 +49,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/textViewTeilnehmerLabel"
-                    android:text="Teilnehmer:" />
+                    android:text="@string/menu_pref_teilnehmer" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -66,7 +66,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/textViewMaterialienLabel"
-                    android:text="Materialien:" />
+                    android:text="@string/menu_pref_materialien" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -80,7 +80,7 @@
                 android:layout_height="match_parent" >
 
                 <TextView
-                    android:text="Temperatur:"
+                    android:text="@string/menu_pref_temperatur"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/textViewTempLabel" />
@@ -97,7 +97,7 @@
                 android:layout_height="match_parent" >
 
                 <TextView
-                    android:text="Luftdruck:"
+                    android:text="@string/menu_pref_luftdruck"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/textViewLuftdruckLabel" />
@@ -114,7 +114,7 @@
                 android:layout_height="match_parent" >
 
                 <TextView
-                    android:text="Luftfeuchtigkeit: "
+                    android:text="@string/menu_pref_luftfeuchte"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/textViewLuftfeuchteLabel" />
@@ -131,7 +131,7 @@
                 android:layout_height="match_parent" >
 
                 <TextView
-                    android:text="Ort:"
+                    android:text="@string/menu_pref_ort"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView31" />
@@ -150,7 +150,7 @@
             android:layout_height="10dp" />
 
         <TextView
-            android:text="Zum Ändern tippen"
+            android:text="@string/menu_versuchsbedingungen_aendernklicken"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textViewTapToChangeHint"
@@ -168,7 +168,7 @@
         android:layout_marginBottom="10dp">
 
         <TextView
-            android:text="Versuch starten"
+            android:text="@string/menu_section_versuchstarten"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView32"
@@ -201,7 +201,7 @@
         android:background="@drawable/settings_section_background">
 
         <TextView
-            android:text="Daten ansehen"
+            android:text="@string/menu_section_datenansehen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView9"
